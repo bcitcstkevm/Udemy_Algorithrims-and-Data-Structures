@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+</head>
+<body>
+    
+<script>
+
+function merge(arr1, arr2){
+    let results = []
+    let i = 0;
+    let j = 0;
+
+    while (i < arr1.length && j < arr2.length){
+        if (arr2[j] > arr1[i]){
+            results.push(arr1[i]);
+            i++;
+        }else{
+            results.push(arr2[j]);
+            j++;
+        }        
+    }
+
+    while (i < arr1.length){
+        results.push(arr1[i]);
+        i++;
+    }
+
+    while (j < arr2.length){
+        results.push(arr2[j]);
+        j++;
+    }
+
+    return results;
+}
+
+function mergeSort(arr){
+    if (arr.length <= 1) return arr;
+    let mid = Math.floor(arr.length / 2);
+    let left = mergeSort(arr.slice(0, mid));
+    let right = mergeSort(arr.slice(mid));
+    return merge(left, right);
+}
+
+// console.log(merge([1, 50 , 100],[2, 14, 99, 100]))
+
+console.log(mergeSort([1, 6, 3 ,2, 8]));
+
+// time best  nlogn
+// average nlogn
+// worse nlogn
+
+// space n
+
+// 32
+// 16 16
+// 8 8 8 8
+// 44444444
+// 2222222222222222
+// 1111111111111111111111111111111111111111111111111
+// these are log n splits so if we have 32 elements we have to split it 5 times. 
+// each time we split there are n comparisions, if 4 elements we compare 4 times (merge function has O = n)
+// number of decompositions * merge function = o = nlogn
+// this is hte best sorting algorithim for most data but ofcourse offset by space complexity.
+
+</script>
+
+</body>
+</html>
