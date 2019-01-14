@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+</head>
+
+<body>
+
+    <script>
+
+        function swap(arr, i, j) {
+            temp = arr[i]
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+
+        function pivot(arr, start=0, end = arr.length) {
+            let pivot = arr[start];
+            let swap_idx = start;
+
+            for (let i = start + 1; i < arr.length; i++) {
+                if (pivot > arr[i]) {
+                    swap_idx++;
+                    swap(arr, swap_idx, i)
+                }
+            }
+            swap(arr, swap_idx, start)
+
+            return swap_idx
+        }
+
+        function quickSort(arr, start=0, end=arr.length - 1) {
+            if (end > start) {
+                let pvt = pivot(arr, start, end);
+                quickSort(arr, start, pvt - 1);
+                quickSort(arr, pvt + 1, end);
+            }
+            console.log(arr)
+            return arr;
+        }
+
+        // console.log(pivot([4, 8, 2, 1, 5, 7, 6, 3]))
+        console.log(quickSort([4, 8, 2,100,-8, 1, 5, 7, 6, 3]))
+
+        //time complex best - nlogn
+        //average -nlogn
+        //worst case - if pivoit is minimum element or maximum element. or having a sorted array because each decomposition is only 1 element.
+        //this is o of n decompositions and each decomposition has n comparisons. its quadractic time.
+        //we can avoid this by using a random or median number for pivot
+
+        //n for the loop and log n for the decomposition
+
+
+
+    </script>
+
+</body>
+
+</html>
